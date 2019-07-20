@@ -2,18 +2,74 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Vacation</title>
+    <title>Note Pade</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+  <img id="title" src="title.png">
+  <div id="newNote">
+    <p id="newTask">New task:</p>
+
+    <form>
+      <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+    </form>
+  </div>
+  <div id="divForYellowNoteS" class="row">
+    <div class="col-md-2"></div>
+
+    <!-- <div class="yellowNote col-md-2"> </div> -->
+
+    <div class="col-md-2"></div>
+  </div>
     <script src="notePade.js"></script>
 </body>
 </html>
 
 <style>
-
+body{
+  background: url(tile.jpg);
+  background-repeat: repeat;
+  background-size: 30%;
+}
+#title{
+  margin-top: 2%;
+  margin-left: 15%;
+}
+#newNote{
+  height: 150px;
+  width: 600px;
+  background: url(formbg.jpg);
+  background-repeat: repeat-y;
+  margin-left: 10%;
+  margin-top: 2%;
+  font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+  font-size: 200%;
+  padding-top: 0.4%;
+  padding-left: 1%;
+}
+#exampleFormControlTextarea1{
+  height: 100px;
+  width: 85%;
+  font-size: 70%;
+  margin-top: -5%;
+  margin-left: 13%;
+  background-color: rgba(0, 0, 0, 0);
+}
+#divForYellowNoteS{
+  display: flex;
+}
+.yellowNote{
+  background: url(notebg.png);
+  background-repeat: no-repeat;
+  background-size: 80%; 
+  height: 400px;
+  width: 130px;
+  margin: 20px;
+}
 </style>
