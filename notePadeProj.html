@@ -8,9 +8,12 @@
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css"> -->
 </head>
 <body>
   <img id="title" src="title.png">
+  <h1 id="clock">00:00:00</h1>
+  <!-- <p id="color">#000000</p> -->
   <div id="newNote">
     <p id="newTask">New task:</p>
 
@@ -23,6 +26,7 @@
   </div>
   <div class="row" id="divForYellowNoteS" >
 
+    <!-- <script src="clock.js"></script> -->
     <script src="icons.js"></script>
     <script src="notePade.js"></script>
 </body>
@@ -37,6 +41,13 @@ body{
 #title{
   margin-top: 2%;
   margin-left: 15%;
+}
+#clock{
+  display: flex;
+  margin-left: 80%;
+  /* font-weight: 300; */
+  font-size: 320%;
+  text-align: right;
 }
 #newNote{
   height: 150px;

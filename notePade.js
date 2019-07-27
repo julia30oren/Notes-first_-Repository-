@@ -1,4 +1,6 @@
 const notes_DOM = {
+    clock: document.getElementById('clock'),
+
     noteForm: document.getElementById('noteForm'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
@@ -104,7 +106,33 @@ function NOTE(_textarea){
 
 function init() {
     arrayOfData = JSON.parse(localStorage.getItem("notesData")) || []
-    draw(arrayOfData)
+    draw(arrayOfData);
 }
 
 init();
+
+
+
+
+function clockF() {
+    
+    var time = new Date();
+    var h = (time.getHours()%12).toString();
+    var m = time.getMinutes().toString();
+    var s = time.getSeconds().toString();
+
+    if ( h.length < 2){
+        h = '0'+ h;
+    }
+    if ( m.length < 2){
+        m = '0'+ m;
+    }
+    if ( s.length < 2){
+        s = '0'+ s;
+    }
+
+    var correntTime = h + ':' + m + ':' + s;
+    clock.textContent = correntTime;
+}
+clockF();
+setInterval(clockF, 1000);
