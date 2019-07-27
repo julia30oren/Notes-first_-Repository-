@@ -14,19 +14,16 @@
   <div id="newNote">
     <p id="newTask">New task:</p>
 
-    <form>
+    <form id="noteForm">
       <div class="form-group">
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
+      <button type="button" class="btn" onclick="saveNOTE()">Save</button>
     </form>
   </div>
-  <div id="divForYellowNoteS" class="row">
-    <div class="col-md-2"></div>
+  <div class="row" id="divForYellowNoteS" >
 
-    <!-- <div class="yellowNote col-md-2"> </div> -->
-
-    <div class="col-md-2"></div>
-  </div>
+    <script src="icons.js"></script>
     <script src="notePade.js"></script>
 </body>
 </html>
@@ -55,21 +52,35 @@ body{
 }
 #exampleFormControlTextarea1{
   height: 100px;
-  width: 85%;
+  width: 65%;
   font-size: 70%;
-  margin-top: -5%;
+  margin-top: -4%;
   margin-left: 13%;
   background-color: rgba(0, 0, 0, 0);
 }
 #divForYellowNoteS{
+  margin: 5%;
   display: flex;
 }
-.yellowNote{
+#yellowNote{
   background: url(notebg.png);
   background-repeat: no-repeat;
   background-size: 80%; 
   height: 400px;
-  width: 130px;
+  width: 100px;
   margin: 20px;
+}
+.YellowNoteText{
+  margin-top: 10%;
+  width: 70%;
+}
+button{
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: -19%;
+  font-size: 150px;
+}
+#bn{
+  border-radius: 30px;
+  margin-left: 20px;
 }
 </style>
