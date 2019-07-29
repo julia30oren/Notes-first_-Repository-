@@ -1,6 +1,6 @@
 const notes_DOM = {
     clock: document.getElementById('clock'),
-
+    nday: document.getElementById('day'),
     noteForm: document.getElementById('noteForm'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
@@ -63,18 +63,23 @@ function createNEWnote(note) {
     checkButt.innerHTML = icons.checkIcon;
     checkButt.className = "btn btn-success";
     checkButt.id = "bn";
-    // deleteButt.addEventListener("click",  )
+    // checkButt.addEventListener("click",  )
 
     const noteText = document.createElement('p');
     noteText.innerText = textarea;
     noteText.className = 'YellowNoteText';
-    divForNote.append(checkButt,deleteButt,noteText);
+
+    const newNoteTime = document.createElement('p');
+    newNoteTime.id = "noteTime";
+    newNoteTime.innerText = "00:00:00";
+    
+    divForNote.append(checkButt,deleteButt,noteText,newNoteTime);
 
     return divForNote;
 }
 
 function deleteNoteHandler() {
-    deleteNote(this.parentElement.parentElement.id)
+    deleteNote(this.parentElement.parentElement.parentElement.id)
 }
 
 function validateNoteNum(textarea) {
@@ -82,7 +87,9 @@ function validateNoteNum(textarea) {
 }
 
 function saveNOTE(){
-    const { textarea, divForYellowNoteS } = notes_DOM;
+    const { textarea, 
+        //divForYellowNoteS 
+    } = notes_DOM;
     
     const result = validateNoteNum(textarea.value);
     if (result !== undefined) {
@@ -92,7 +99,7 @@ function saveNOTE(){
     arrayOfData.push(new NOTE(textarea.value));
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData)
-    divForYellowNoteS.reset();
+    // divForYellowNoteS.reset();
 }
 
 function saveToLocalStorage(key, value) {
@@ -130,9 +137,17 @@ function clockF() {
     if ( s.length < 2){
         s = '0'+ s;
     }
-
     var correntTime = h + ':' + m + ':' + s;
     clock.textContent = correntTime;
+
+    return correntTime;
 }
 clockF();
 setInterval(clockF, 1000);
+
+
+// var dateT = new Date();
+// var day = dateT.getDay().toString();
+// var mns = dateT.getMonth().toString();
+// var correntDay = day + ' ' + mns;
+// nday.textContent = correntDay;
