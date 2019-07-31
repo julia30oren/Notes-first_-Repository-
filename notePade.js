@@ -2,6 +2,8 @@ const notes_DOM = {
     clock: document.getElementById('clock'),
     nday: document.getElementById('day'),
     noteForm: document.getElementById('noteForm'),
+
+    ShouldBeDone: document.getElementById('ShouldBeDone'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
 }
@@ -23,45 +25,45 @@ function clearAll() {
 function drawNote(note) {
     const { divForYellowNoteS } = notes_DOM;
     const memo_note = createNEWnote(note);
-    // memo_note.className = "yellowNote ";
-    // memo_note.id = "yellowNote";
     if (!memo_note) return;
     divForYellowNoteS.append(memo_note);
 }
 
 function deleteNote (id){
-    const ind = findIndex (arrayOfData, id);
+    const index = findIndex(arrayOfData, id);
     if (id === undefined) return;
-    arrayOfData.splice(ind, 1)
+    arrayOfData.splice(index, 1);
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData);
+    console.log(index)
 }
 
-function findIndex(data, THIStextarea) {
-    for (let index = 0; index < data.length; index++) {
-        if (data[index].textarea === THIStextarea) {
-            return index
+function findIndex(data, thisNote) {
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].textarea === thisNote) {
+            return i;
         }
     }
 }
 
 function createNEWnote(note) {
-    const { textarea } = note;
+    const { textarea} = note;
     if (!textarea) return;
 
     const divForNote = document.createElement('div');
-    divForNote.className = 'yellowNote col-lg-2 col-sm-4';
-    divForNote.id = 'task#' + Math.round(Math.random()*99);
+    divForNote.className = 'yellowNote col-lg-2 col-sm-6';
+    divForNote.id = 'task#' + textarea;
+    console.log(divForNote.id)
 
     const deleteButt = document.createElement('button');
     deleteButt.innerHTML = icons.deleteIcon;
-    deleteButt.className = "btn btn-danger";
+    deleteButt.className = "btn btn-note";
     deleteButt.id = "bn";
     deleteButt.addEventListener("click",deleteNoteHandler)
 
     const checkButt = document.createElement('button');
     checkButt.innerHTML = icons.checkIcon;
-    checkButt.className = "btn btn-success";
+    checkButt.className = "btn btn-note";
     checkButt.id = "bn";
     // checkButt.addEventListener("click",  )
 
@@ -74,7 +76,7 @@ function createNEWnote(note) {
 
     const newNoteTime = document.createElement('p');
     newNoteTime.id = "noteTime";
-    newNoteTime.innerText = "00:00:00";
+    newNoteTime.innerText = clockF();
     
     divForButtons.append(checkButt,deleteButt,newNoteTime)
     divForNote.append(divForButtons,noteText);
@@ -84,7 +86,8 @@ function createNEWnote(note) {
 }
 
 function deleteNoteHandler() {
-    deleteNote(this.parentElement.id)
+    deleteNote(this.parentElement.parentElement.id)
+    // console.log(this.parentElement.parentElement.id)
 }
 
 function validateNoteNum(textarea) {
@@ -92,9 +95,7 @@ function validateNoteNum(textarea) {
 }
 
 function saveNOTE(){
-    const { textarea, 
-        //divForYellowNoteS 
-    } = notes_DOM;
+    const { textarea,divForYellowNoteS} = notes_DOM;
     
     const result = validateNoteNum(textarea.value);
     if (result !== undefined) {
@@ -105,18 +106,8 @@ function saveNOTE(){
     arrayOfData.push(new NOTE(textarea.value));
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData);
-    // divForYellowNoteS.reset();
+    divForYellowNoteS.reset();
 }
-
-// function animate(element) {
-//     transition.begin(element, {
-//         property: "background-color",
-//         from: "#ffffff",
-//         to: "#ADB5C7",
-//         duration: "500ms",
-//         timingFunction: "linear"
-//     });
-// }
 
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -124,7 +115,7 @@ function saveToLocalStorage(key, value) {
 
 function NOTE(_textarea){
     this.textarea = _textarea;
-    this.selected = false;
+    // this.selected = false;
 }
 
 function init() {
@@ -134,39 +125,40 @@ function init() {
 
 init();
 
-
-
-
 function clockF() {
-    
+
     var time = new Date();
-    var h = (time.getHours()%12).toString();
-    var m = time.getMinutes().toString();
-    var s = time.getSeconds().toString();
+    console.log(time);
+    var endDate = new Date(2019, 07, 1, 0, 0, 0);
+    console.log(endDate);
 
-    if ( h.length < 2){
-        h = '0'+ h;
-    }
-    if ( m.length < 2){
-        m = '0'+ m;
-    }
-    if ( s.length < 2){
-        s = '0'+ s;
-    }
-    var correntTime = h + ':' + m + ':' + s;
-    clock.textContent = correntTime;
+    var remTime = endDate.getTime() - time.getTime();
 
-    return correntTime;
+    var left_h = Math.floor(remTime/3600000);
+    console.log(left_h)
+
+    var left_m = Math.floor(remTime/60000) - (left_h*60);
+    console.log(left_m)
+
+    // var left_s = (remTime/1000/100) - Math.floor(remTime/1000/100);
+    // console.log(left_s)
+    // console.log(remTime);
+
+
+    // if ( left_h.length < 2){
+    //     left_h = '0'+ left_h;
+    // }
+    // if ( left_m.length < 2){
+    //     left_m = '0'+ left_m;
+    // }
+    // if ( left_s.length < 2){
+    //     left_s = '0'+ left_s;
+    // }
+    var remTimeSt ="Left : " + left_h + ' hours ' + left_m + ' minutes';
+    // clock.textContent = remTimeSt;
+
+    return remTimeSt;
 
 }
 clockF();
 setInterval(clockF, 1000);
-const t = clockF();
-console.log(t);
-
-
-// var dateT = new Date();
-// var day = dateT.getDay().toString();
-// var mns = dateT.getMonth().toString();
-// var correntDay = day + ' ' + mns;
-// nday.textContent = correntDay;

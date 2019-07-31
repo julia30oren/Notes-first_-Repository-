@@ -3,28 +3,46 @@
   <head>
     <meta charset="UTF-8">
     <title>Note Pade</title>
-    <link rel="stylesheet" href="style.css">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+  </head>
 <body>
   <img id="title" src="title.png">
-  <h1 id="clock">00:00:00</h1>
-  <p id="day">00/../0000</p>
+  <!-- <h1 id="clock">00:00:00</h1> -->
+  <!-- <p id="day">00/../0000</p> -->
+  <div id="in">
 <div id="newNote">
-    <p id="newTask">New task:</p>
 
+    <p id="newTask">New task:</p>
     <form id="noteForm">
-      <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
-      <button type="button" class="btn" onclick="saveNOTE()">Save</button>
-      <button type="reset" class="btn" id="reset">Reset</button>
+        <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+        </div>
     </form>
+
+    <p id="timTask">Should be done until:</p>
+    <form>
+        <div class="form-row">
+          <div class="col">
+            <input type="number"  id="day" class="form-control" placeholder="dd" min="01" max="31">
+          </div>
+          <div class="col">
+            <input type="number"  id="day" class="form-control" placeholder="mm" min="01" max="12">
+          </div>
+          <div class="col">
+              <input type="number"  id="day" class="form-control" placeholder="yyyy" min="2019" max="2025">
+          </div>
+        </div>
+      </form>
+
+    <button  id="SaveButton" type="button" class="btn sm" onclick="saveNOTE()">Save</button>
+    <button  id="ResetButton" type="reset" class="btn sm" id="reset">Reset</button>
   </div>
 </div>
 
@@ -35,6 +53,7 @@
     <button type="button" class="btn big" onclick="" id="butNew">New</button>
     <button type="button" class="btn big" onclick="" id="butDone">Done</button>
   </form>
+</div>
 </div>
   <div class="row" id="divForYellowNoteS" >
   
