@@ -6,7 +6,7 @@ const notes_DOM = {
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
 }
 
-let arrayOfData = [{textarea:';kfjnvl3kwbjv ;lkdv lkdaj, sjkhdf'}];
+let arrayOfData = [];
 
 function draw(array){
     clearAll();
@@ -23,8 +23,8 @@ function clearAll() {
 function drawNote(note) {
     const { divForYellowNoteS } = notes_DOM;
     const memo_note = createNEWnote(note);
-    memo_note.className = "yellowNote col-lg-2 col-sm-4";
-    memo_note.id = "yellowNote";
+    // memo_note.className = "yellowNote ";
+    // memo_note.id = "yellowNote";
     if (!memo_note) return;
     divForYellowNoteS.append(memo_note);
 }
@@ -50,7 +50,7 @@ function createNEWnote(note) {
     if (!textarea) return;
 
     const divForNote = document.createElement('div');
-    divForNote.className = 'yellowNote';
+    divForNote.className = 'yellowNote col-lg-2 col-sm-4';
     divForNote.id = 'task#' + Math.round(Math.random()*99);
 
     const deleteButt = document.createElement('button');
@@ -65,6 +65,9 @@ function createNEWnote(note) {
     checkButt.id = "bn";
     // checkButt.addEventListener("click",  )
 
+    const divForButtons = document.createElement('div');
+    divForButtons.className = 'divForButtons';
+
     const noteText = document.createElement('p');
     noteText.innerText = textarea;
     noteText.className = 'YellowNoteText';
@@ -73,13 +76,15 @@ function createNEWnote(note) {
     newNoteTime.id = "noteTime";
     newNoteTime.innerText = "00:00:00";
     
-    divForNote.append(checkButt,deleteButt,noteText,newNoteTime);
+    divForButtons.append(checkButt,deleteButt,newNoteTime)
+    divForNote.append(divForButtons,noteText);
 
     return divForNote;
+    
 }
 
 function deleteNoteHandler() {
-    deleteNote(this.parentElement.parentElement.parentElement.id)
+    deleteNote(this.parentElement.id)
 }
 
 function validateNoteNum(textarea) {
@@ -96,11 +101,22 @@ function saveNOTE(){
         alert("Note already Exist!")
         return;
     }
+
     arrayOfData.push(new NOTE(textarea.value));
     saveToLocalStorage("notesData", arrayOfData);
-    draw(arrayOfData)
+    draw(arrayOfData);
     // divForYellowNoteS.reset();
 }
+
+// function animate(element) {
+//     transition.begin(element, {
+//         property: "background-color",
+//         from: "#ffffff",
+//         to: "#ADB5C7",
+//         duration: "500ms",
+//         timingFunction: "linear"
+//     });
+// }
 
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -141,9 +157,12 @@ function clockF() {
     clock.textContent = correntTime;
 
     return correntTime;
+
 }
 clockF();
 setInterval(clockF, 1000);
+const t = clockF();
+console.log(t);
 
 
 // var dateT = new Date();
