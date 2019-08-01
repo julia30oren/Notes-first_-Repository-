@@ -9,7 +9,7 @@
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
 
   </head>
 <body>
@@ -33,10 +33,10 @@
             <input type="number"  id="day" class="form-control" placeholder="dd" min="01" max="31">
           </div>
           <div class="col">
-            <input type="number"  id="day" class="form-control" placeholder="mm" min="01" max="12">
+            <input type="number"  id="month" class="form-control" placeholder="mm" min="01" max="12">
           </div>
           <div class="col">
-              <input type="number"  id="day" class="form-control" placeholder="yyyy" min="2019" max="2025">
+              <input type="number"  id="year" class="form-control" placeholder="yyyy" min="2019" max="2025">
           </div>
         </div>
       </form>
@@ -49,9 +49,9 @@
 <div id="Sort">
   <p id="newTask">Sort notes by...</p>
   <form id="noteForm">
-    <button type="button" class="btn big" onclick="" id="butAll">All</button>
-    <button type="button" class="btn big" onclick="" id="butNew">New</button>
-    <button type="button" class="btn big" onclick="" id="butDone">Done</button>
+    <button type="button" class="btn big" onclick="init()" id="butAll">All</button>
+    <!-- <button type="button" class="btn big" onclick="" id="butNew">New</button> -->
+    <button type="button" class="btn big" onclick="getDoneNotes()" id="butDone">Done</button>
   </form>
 </div>
 </div>
