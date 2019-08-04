@@ -2,8 +2,6 @@ const notes_DOM = {
     clock: document.getElementById('clock'),
     nday: document.getElementById('day'),
     noteForm: document.getElementById('noteForm'),
-
-    ShouldBeDone: document.getElementById('ShouldBeDone'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
 }
@@ -23,48 +21,53 @@ function clearAll() {
 }
 
 function drawNote(note) {
+    console.log('NOTES ID ' + note.id)
     const { divForYellowNoteS } = notes_DOM;
     const memo_note = createNEWnote(note);
+   
     if (!memo_note) return;
     divForYellowNoteS.append(memo_note);
 }
 
 function deleteNote (id){
-    const index = findIndex(arrayOfData, id);
-    if (id === undefined) return;
-    arrayOfData.splice(index, 1);
+    const ind = findIndex (arrayOfData, id);
+    if (ind === undefined) return;
+    arrayOfData.splice(ind, 1)
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData);
-    console.log(index)
 }
 
-function findIndex(data, thisNote) {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].textarea === thisNote) {
-            return i;
-        }
-    }
+function findIndex(data, _id) {
+ 
+    console.log('Id is ' + _id);
+    for (let index = 0; index < data.length; index++) {
+        console.log(data[index].id);
+                if (data[index].id === _id) {
+                    console.log(data[index].id + ' WWWWW ' + _id)
+                    return index
+                }
+            }
 }
 
 function createNEWnote(note) {
-    const { textarea} = note;
+    const { textarea, id } = note;
     if (!textarea) return;
 
     const divForNote = document.createElement('div');
-    divForNote.className = 'yellowNote col-lg-2 col-sm-6';
-    divForNote.id = 'task#' + textarea;
-    console.log(divForNote.id)
+    divForNote.className = 'yellowNote col-lg-2 col-sm-4';
+    console.log('DIVFORNOTE ID ' + id)
+    divForNote.id = id
 
     const deleteButt = document.createElement('button');
     deleteButt.innerHTML = icons.deleteIcon;
-    deleteButt.className = "btn btn-note";
-    deleteButt.id = "bn";
+    deleteButt.className = "btn btn-danger";
+    deleteButt.id = "dltBtn";
     deleteButt.addEventListener("click",deleteNoteHandler)
 
     const checkButt = document.createElement('button');
     checkButt.innerHTML = icons.checkIcon;
-    checkButt.className = "btn btn-note";
-    checkButt.id = "bn";
+    checkButt.className = "btn btn-success";
+    checkButt.id = "checkBtn";
     // checkButt.addEventListener("click",  )
 
     const divForButtons = document.createElement('div');
@@ -76,18 +79,17 @@ function createNEWnote(note) {
 
     const newNoteTime = document.createElement('p');
     newNoteTime.id = "noteTime";
-    newNoteTime.innerText = clockF();
+    // newNoteTime.innerText = clockF();
     
-    divForButtons.append(checkButt,deleteButt,newNoteTime)
-    divForNote.append(divForButtons,noteText);
+    divForButtons.append(checkButt,deleteButt)
+    divForNote.append(divForButtons,noteText,newNoteTime);
 
     return divForNote;
-    
 }
 
 function deleteNoteHandler() {
+    console.log('Parent elemtn id ' + this.parentElement.id);
     deleteNote(this.parentElement.parentElement.id)
-    // console.log(this.parentElement.parentElement.id)
 }
 
 function validateNoteNum(textarea) {
@@ -95,27 +97,28 @@ function validateNoteNum(textarea) {
 }
 
 function saveNOTE(){
-    const { textarea,divForYellowNoteS} = notes_DOM;
-    
-    const result = validateNoteNum(textarea.value);
+    const { textarea } = notes_DOM;
+    id = 'task#' + Math.round(Math.random()*99);
+    console.log('THIs is ' + textarea + ' and ' + id)
+    const result = validateNoteNum(textarea.value, id);
     if (result !== undefined) {
         alert("Note already Exist!")
         return;
     }
-
-    arrayOfData.push(new NOTE(textarea.value));
+    arrayOfData.push(new NOTE(textarea.value, id));
     saveToLocalStorage("notesData", arrayOfData);
-    draw(arrayOfData);
-    divForYellowNoteS.reset();
+    draw(arrayOfData)
+    // divForYellowNoteS.reset();
 }
 
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function NOTE(_textarea){
+function NOTE(_textarea, _id){
     this.textarea = _textarea;
-    // this.selected = false;
+    this.id = _id;
+    this.selected = false;
 }
 
 function init() {
@@ -125,40 +128,39 @@ function init() {
 
 init();
 
-function clockF() {
-
-    var time = new Date();
-    console.log(time);
-    var endDate = new Date(2019, 07, 1, 0, 0, 0);
-    console.log(endDate);
-
-    var remTime = endDate.getTime() - time.getTime();
-
-    var left_h = Math.floor(remTime/3600000);
-    console.log(left_h)
-
-    var left_m = Math.floor(remTime/60000) - (left_h*60);
-    console.log(left_m)
-
-    // var left_s = (remTime/1000/100) - Math.floor(remTime/1000/100);
-    // console.log(left_s)
-    // console.log(remTime);
 
 
-    // if ( left_h.length < 2){
-    //     left_h = '0'+ left_h;
-    // }
-    // if ( left_m.length < 2){
-    //     left_m = '0'+ left_m;
-    // }
-    // if ( left_s.length < 2){
-    //     left_s = '0'+ left_s;
-    // }
-    var remTimeSt ="Left : " + left_h + ' hours ' + left_m + ' minutes';
-    // clock.textContent = remTimeSt;
 
-    return remTimeSt;
+// function clockF() {
+    
+//     var time = new Date();
+//     var h = (time.getHours()%12).toString();
+//     var m = time.getMinutes().toString();
+//     var s = time.getSeconds().toString();
 
-}
-clockF();
-setInterval(clockF, 1000);
+//     if ( h.length < 2){
+//         h = '0'+ h;
+//     }
+//     if ( m.length < 2){
+//         m = '0'+ m;
+//     }
+//     if ( s.length < 2){
+//         s = '0'+ s;
+//     }
+//     var correntTime = h + ':' + m + ':' + s;
+//     clock.textContent = correntTime;
+
+//     return correntTime;
+
+// }
+// clockF();
+// setInterval(clockF, 1000);
+// const t = clockF();
+// console.log(t);
+
+
+// var dateT = new Date();
+// var day = dateT.getDay().toString();
+// var mns = dateT.getMonth().toString();
+// var correntDay = day + ' ' + mns;
+// nday.textContent = correntDay;
