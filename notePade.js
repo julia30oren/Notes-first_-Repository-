@@ -1,18 +1,17 @@
 const notes_DOM = {
-    deadLineYear: document.getElementById('year'),
-    deadLineMonth: document.getElementById('month'),
-    deadLineDay: document.getElementById('day'),
-
     noteForm: document.getElementById('noteForm'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
+
+    day: document.getElementById('day'),
+    month: document.getElementById('month'),
+    year: document.getElementById('year'),
 }
 
 let arrayOfData = [];
 
 function draw(array){
     clearAll();
-
     for (i=0; i<array.length; i++) {
         drawNote(array[i])
     }
@@ -23,7 +22,6 @@ function clearAll() {
 }
 
 function drawNote(note) {
-    // console.log('NOTES ID ' + note.id)
     const { divForYellowNoteS } = notes_DOM;
     const memo_note = createNEWnote(note);
    
@@ -40,25 +38,20 @@ function deleteNote (id){
 }
 
 function findIndex(data, _id) {
- 
-    // console.log('Id is ' + _id);
-    for (let index = 0; index < data.length; index++) {
-        // console.log(data[index].id);
+     for (let index = 0; index < data.length; index++) {
                 if (data[index].id === _id) {
-                    // console.log(data[index].id + ' WWWWW ' + _id)
-                    return index
+                    return index;
                 }
             }
 }
 
 function createNEWnote(note) {
-    const { name, textarea, id, deadLineYear, deadLineMonth, deadLineDay ,timer } = note;
-    if (!textarea) return;
+    const { name, textarea, id, day, month, year } = note;
+    if (!textarea || !day || !month || !year) return;
 
     const divForNote = document.createElement('div');
     divForNote.className = 'yellowNote col-lg-2 col-sm-4';
-    // console.log('DIVFORNOTE ID ' + id)
-    divForNote.id = id
+    divForNote.id = id;
 
     const deleteButt = document.createElement('button');
     deleteButt.innerHTML = icons.deleteIcon;
@@ -85,15 +78,7 @@ function createNEWnote(note) {
 
     const newNoteTime = document.createElement('p');
     newNoteTime.id = "noteTime";
-    newNoteTime.innerText = "Left Time : " + new Date(deadLineYear, deadLineMonth, deadLineDay);
-    // newNoteTime = function(){
-    //     console.log(deadLineYear, deadLineMonth, deadLineDay)
-    // }
-    // newNoteTime.innerHTML = "Left Time : " + timer; 
-
-    // newNoteTime.innerHTML = deadLineYear + "year" 
-    //    + deadLineMonth + "month" + deadLineDay + "day";
-
+    newNoteTime.innerText = "Deadline : " + day + "/" + month + "/" + year;
     
     divForButtons.append(checkButt,deleteButt)
     divForNote.append(divForButtons,noteText,newNoteTime);
@@ -102,7 +87,6 @@ function createNEWnote(note) {
 }
 
 function deleteNoteHandler() {
-    // console.log('Parent elemtn id ' + this.parentElement.id);
     deleteNote(this.parentElement.parentElement.id)
 }
 
@@ -111,9 +95,7 @@ function addNewName(){
     const currentNote = arrayOfData[noteIndex];
     const { textarea } = currentNote;
     notes_DOM.textarea.value = textarea;
-    // console.log(noteIndex);
     currentNote.name = "Already Done : ";
-    // console.log(currentNote);
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData);
 }
@@ -123,17 +105,15 @@ function validateNoteNum(textarea) {
 }
 
 function saveNOTE(){
-    const { textarea ,deadLineYear, deadLineMonth, deadLineDay, timer} = notes_DOM;
+    const { textarea } = notes_DOM;
     id = 'task#' + Math.round(Math.random()*99);
-    // console.log('THIs is ' + textarea + ' and ' + id)
 
     const result = validateNoteNum(textarea.value, id);
     if (result !== undefined) {
         alert("Note already Exist!")
         return;
     }
-    arrayOfData.push(new NOTE(name, textarea.value, id, deadLineYear.value, 
-        deadLineMonth.value, deadLineDay.value, timer ));
+    arrayOfData.push(new NOTE(name, textarea.value, id, day.value , month.value, year.value));
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData)
 }
@@ -142,14 +122,13 @@ function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function NOTE(_name, _textarea, _id, _deadLineYear, _deadLineMonth, _deadLineDay , _timer){
+function NOTE(_name, _textarea, _id, _day , _month, _year){
     this.name = "New Note : ";
     this.textarea = _textarea;
     this.id = _id;
-    this.deadLineYear = _deadLineYear;
-    this.deadLineMonth = _deadLineMonth;
-    this.deadLineDay = _deadLineDay;
-    this.timer = " ";
+    this.day = _day;
+    this.month = _month;
+    this.year = _year;
     this.selected = false;
 }
 
@@ -157,7 +136,6 @@ function init() {
     arrayOfData = JSON.parse(localStorage.getItem("notesData")) || []
     draw(arrayOfData);
 }
+
 init();
-
-
-console.log(arrayOfData);
+// console.log(arrayOfData);

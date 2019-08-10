@@ -14,9 +14,8 @@
   </head>
 <body>
   <img id="title" src="title.png">
-  <!-- <h1 id="clock">00:00:00</h1> -->
-  <!-- <p id="day">00/../0000</p> -->
-  <div id="in">
+
+<div id="in">
 <div id="newNote">
 
     <p id="newTask">New task:</p>
@@ -24,10 +23,8 @@
         <div class="form-group">
           <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
         </div>
-    </form>
 
     <p id="timTask">Should be done until:</p>
-    <form id="form">
         <div class="form-row">
           <div class="col">
             <input type="number"  id="day" class="form-control" placeholder="dd" min="01" max="31">
@@ -39,12 +36,15 @@
               <input type="number"  id="year" class="form-control" placeholder="yyyy" min="2019" max="2025">
           </div>
         </div>
-      </form>
 
     <button  id="SaveButton" type="button" class="btn sm" onclick="saveNOTE()">Save</button>
     <button  id="ResetButton" type="reset" class="btn sm" >Reset</button>
-  </div>
+    </form>
 </div>
+</div>
+
+  <h1 id="clock">00:00:00</h1>
+  <!-- <p id="day">00/../0000</p> -->
 
 <div id="Sort">
   <p id="newTask">Sort notes by...</p>
@@ -53,18 +53,19 @@
     <button type="button" class="btn big" onclick="getNewNotes()" id="butNew">New</button>
     <button type="button" class="btn big" onclick="getDoneNotes()" id="butDone">Done</button>
   </form>
-</div>
+  <img id="pen" src="pen-png-icon-12.png">
+
 </div>
 
-  <div class="row" id="divForYellowNoteS" >
+<div class="row" id="divForYellowNoteS" >
   
-  </div>
+</div>
+
 
     <script src="icons.js"></script>
     <script src="notePade.js"></script>
     <script src="filter.js"></script>
-    <!-- <script src="timer.js"></script> -->
+    <script src="timer.js"></script>
 
 </body>
 </html>
-

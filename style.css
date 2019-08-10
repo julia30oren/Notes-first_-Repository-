@@ -22,7 +22,9 @@ padding-left: 10px;
   font-size: 200%;
   padding-top: 0.4%;
   padding-left: 1%;
+  box-shadow: 15px 15px 10px rgba(29, 29, 29, 0.513);
 }
+
 .form-control{
   background-color: rgba(0, 0, 0, 0);
 }
@@ -51,15 +53,16 @@ position: absolute;
 }
 #Sort{
   height: 150px;
-  width: 40%;
+  width: 30%;
   background: url(formbg.jpg);
   background-repeat: repeat-y;
-  margin-left: 60%;
+  margin-left: 50%;
   margin-top: 1%;
   font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
   font-size: 200%;
   padding-top: 0.4%;
   padding-left: 1%;
+  box-shadow: 15px 15px 10px rgba(29, 29, 29, 0.513);
 }
 .big{
   margin-top: -2.5%;
@@ -70,27 +73,30 @@ button:hover{
   background-color: rgba(47, 75, 168, 0.685);
 }
 #divForYellowNoteS{
-  margin-top: 15%;
+  margin-top: 10%;
   margin-left: 10%;
   display: flex;
 }
 .yellowNote{
   background: url(notebg.png);
   background-repeat: no-repeat;
-  background-size: 80%; 
-  height: 300px;
+  background-size: 95%; 
+  height: 340px;
   width: 100px;
   margin: 25px;
+  
 }
 .yellowNote:hover{
-  background-size: 100%; 
+  margin-top: 0px;
+  background-size: 120%; 
+  box-shadow: 18px 30px 10px rgba(29, 29, 29, 0.513);
 }
 .YellowNoteText{
   font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
   font-size: 200%;
   margin-top: 12%;
   width: 85%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
 }
 .YellowNoteText:hover{
@@ -110,12 +116,22 @@ button:hover{
   width: 200px;
 }
 .divForButtons:hover{
-  opacity: 1;
+  opacity: 0.5;
   color: rgb(184, 1, 1);
 }
 .btn-note{
-  background-color: rgba(18, 90, 24, 0.548)
+  background-color: rgba(29, 29, 29, 0.513);
 }
 .name{
   color: red;
+}
+#clock{
+  margin-left: 70%;
+  text-shadow: 2px 2px 2px rgba(29, 29, 29, 0.513);
+}
+#pen{
+  position: absolute;
+  padding-bottom: 20px;
+  margin-top: -5%;
+  margin-left: 28%;
 }
