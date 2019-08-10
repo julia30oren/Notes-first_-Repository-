@@ -1,6 +1,7 @@
 const notes_DOM = {
-    clock: document.getElementById('clock'),
-    nday: document.getElementById('day'),
+    // clock: document.getElementById('clock'),
+    // nday: document.getElementById('day'),
+
     noteForm: document.getElementById('noteForm'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
     divForYellowNoteS: document.getElementById('divForYellowNoteS'),
@@ -21,7 +22,7 @@ function clearAll() {
 }
 
 function drawNote(note) {
-    console.log('NOTES ID ' + note.id)
+    // console.log('NOTES ID ' + note.id)
     const { divForYellowNoteS } = notes_DOM;
     const memo_note = createNEWnote(note);
    
@@ -39,23 +40,23 @@ function deleteNote (id){
 
 function findIndex(data, _id) {
  
-    console.log('Id is ' + _id);
+    // console.log('Id is ' + _id);
     for (let index = 0; index < data.length; index++) {
-        console.log(data[index].id);
+        // console.log(data[index].id);
                 if (data[index].id === _id) {
-                    console.log(data[index].id + ' WWWWW ' + _id)
+                    // console.log(data[index].id + ' WWWWW ' + _id)
                     return index
                 }
             }
 }
 
 function createNEWnote(note) {
-    const { textarea, id } = note;
+    const { name, textarea, id } = note;
     if (!textarea) return;
 
     const divForNote = document.createElement('div');
     divForNote.className = 'yellowNote col-lg-2 col-sm-4';
-    console.log('DIVFORNOTE ID ' + id)
+    // console.log('DIVFORNOTE ID ' + id)
     divForNote.id = id
 
     const deleteButt = document.createElement('button');
@@ -68,18 +69,22 @@ function createNEWnote(note) {
     checkButt.innerHTML = icons.checkIcon;
     checkButt.className = "btn btn-success";
     checkButt.id = "checkBtn";
-    // checkButt.addEventListener("click",  )
+    checkButt.addEventListener("click", addNewName )
 
     const divForButtons = document.createElement('div');
     divForButtons.className = 'divForButtons';
 
+    const noteT = document.createElement('p');
+    noteT.innerText = textarea;
+
     const noteText = document.createElement('p');
-    noteText.innerText = textarea;
+    noteText.innerText = name;
     noteText.className = 'YellowNoteText';
+    noteText.append(noteT);
 
     const newNoteTime = document.createElement('p');
     newNoteTime.id = "noteTime";
-    // newNoteTime.innerText = clockF();
+    newNoteTime.innerText = "Left Time : ";
     
     divForButtons.append(checkButt,deleteButt)
     divForNote.append(divForButtons,noteText,newNoteTime);
@@ -88,8 +93,20 @@ function createNEWnote(note) {
 }
 
 function deleteNoteHandler() {
-    console.log('Parent elemtn id ' + this.parentElement.id);
+    // console.log('Parent elemtn id ' + this.parentElement.id);
     deleteNote(this.parentElement.parentElement.id)
+}
+
+function addNewName(){
+    const noteIndex = findIndex(arrayOfData, this.parentElement.parentElement.id);
+    const currentNote = arrayOfData[noteIndex];
+    const { textarea } = currentNote;
+    notes_DOM.textarea.value = textarea;
+    // console.log(noteIndex);
+    currentNote.name = "Already Done : ";
+    // console.log(currentNote);
+    saveToLocalStorage("notesData", arrayOfData);
+    draw(arrayOfData);
 }
 
 function validateNoteNum(textarea) {
@@ -99,23 +116,24 @@ function validateNoteNum(textarea) {
 function saveNOTE(){
     const { textarea } = notes_DOM;
     id = 'task#' + Math.round(Math.random()*99);
-    console.log('THIs is ' + textarea + ' and ' + id)
+    // console.log('THIs is ' + textarea + ' and ' + id)
+
     const result = validateNoteNum(textarea.value, id);
     if (result !== undefined) {
         alert("Note already Exist!")
         return;
     }
-    arrayOfData.push(new NOTE(textarea.value, id));
+    arrayOfData.push(new NOTE(name, textarea.value, id));
     saveToLocalStorage("notesData", arrayOfData);
     draw(arrayOfData)
-    // divForYellowNoteS.reset();
 }
 
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function NOTE(_textarea, _id){
+function NOTE(_name, _textarea, _id){
+    this.name = "New Note : ";
     this.textarea = _textarea;
     this.id = _id;
     this.selected = false;
@@ -127,8 +145,6 @@ function init() {
 }
 
 init();
-
-
 
 
 // function clockF() {
@@ -164,3 +180,4 @@ init();
 // var mns = dateT.getMonth().toString();
 // var correntDay = day + ' ' + mns;
 // nday.textContent = correntDay;
+console.log(arrayOfData);

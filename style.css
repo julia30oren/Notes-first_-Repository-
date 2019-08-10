@@ -86,6 +86,8 @@ body{
     background-size: 100%; 
   }
   .YellowNoteText{
+    font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    font-size: 200%;
     margin-top: 12%;
     width: 85%;
     height: 200px;
@@ -97,10 +99,11 @@ body{
     overflow: auto;
     }
     #noteTime{
-    margin-top: 110%;
+    margin-top: -10%;
+    color: rgb(184, 1, 1);
   }
   .divForButtons{
-      margin-top: -20px;
+    margin-top: -20px;
     position: absolute;
     opacity: 0;
     height: 300px;
@@ -112,4 +115,7 @@ body{
   }
   .btn-note{
     background-color: rgba(18, 90, 24, 0.548)
+  }
+  .name{
+    color: red;
   }
