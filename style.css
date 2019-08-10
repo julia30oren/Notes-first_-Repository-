@@ -1,115 +1,121 @@
 body{
-    background: url(tile.jpg);
-    background-repeat: repeat;
-    background-size: 30%;
-  }
-  #title{
-    margin-top: 2%;
-    margin-left: 15%;
-  }
+  background: url(tile.jpg);
+  background-repeat: repeat;
+  background-size: 30%;
+}
+#title{
+  margin-top: 2%;
+  margin-left: 15%;
+}
 .timeSet{
-  width: 50px;
-  padding-left: 10px;
+width: 50px;
+padding-left: 10px;
 }
 #newNote{
-    height: 300px;
-    width: 600px;
-    background: url(formbg.jpg);
-    background-repeat: repeat-y;
-    margin-left: 20%;
-    margin-top: 2%;
-    font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-    font-size: 200%;
-    padding-top: 0.4%;
-    padding-left: 1%;
-  }
-  .form-control{
-    background-color: rgba(0, 0, 0, 0);
-  }
-  #exampleFormControlTextarea1{
-    height: 100px;
-    margin-top: -25px;
-  }
-  #timTask{
-    margin-top: -22px;
-  }
-  .form-row{
-    margin-top: -25px;
-  }
-  #SaveButton{
-    background-color: rgba(0, 0, 0, 0);
-    margin-top: 18px;
-    font-size:30px;
-    margin-left: 45%;
-  }
-  #ResetButton{
-    font-size:30px;
-    margin-top: 18px;
-  }
-#in{
-  position: absolute;
+  height: 300px;
+  width: 600px;
+  background: url(formbg.jpg);
+  background-repeat: repeat-y;
+  margin-left: 20%;
+  margin-top: 2%;
+  font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+  font-size: 200%;
+  padding-top: 0.4%;
+  padding-left: 1%;
 }
-  #Sort{
-    height: 150px;
-    width: 40%;
-    background: url(formbg.jpg);
-    background-repeat: repeat-y;
-    margin-left: 60%;
-    margin-top: 1%;
-    font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-    font-size: 200%;
-    padding-top: 0.4%;
-    padding-left: 1%;
+.form-control{
+  background-color: rgba(0, 0, 0, 0);
+}
+#exampleFormControlTextarea1{
+  height: 100px;
+  margin-top: -25px;
+}
+#timTask{
+  margin-top: -22px;
+}
+.form-row{
+  margin-top: -25px;
+}
+#SaveButton{
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: 18px;
+  font-size:30px;
+  margin-left: 45%;
+}
+#ResetButton{
+  font-size:30px;
+  margin-top: 18px;
+}
+#in{
+position: absolute;
+}
+#Sort{
+  height: 150px;
+  width: 40%;
+  background: url(formbg.jpg);
+  background-repeat: repeat-y;
+  margin-left: 60%;
+  margin-top: 1%;
+  font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+  font-size: 200%;
+  padding-top: 0.4%;
+  padding-left: 1%;
+}
+.big{
+  margin-top: -2.5%;
+  font-size:50px;
+  width: 150px;
+}
+button:hover{
+  background-color: rgba(47, 75, 168, 0.685);
+}
+#divForYellowNoteS{
+  margin-top: 15%;
+  margin-left: 10%;
+  display: flex;
+}
+.yellowNote{
+  background: url(notebg.png);
+  background-repeat: no-repeat;
+  background-size: 80%; 
+  height: 300px;
+  width: 100px;
+  margin: 25px;
+}
+.yellowNote:hover{
+  background-size: 100%; 
+}
+.YellowNoteText{
+  font-family: "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+  font-size: 200%;
+  margin-top: 12%;
+  width: 85%;
+  height: 200px;
+  overflow: hidden;
+}
+.YellowNoteText:hover{
+  margin-top: 12%;
+  width: 90%;
+  overflow: auto;
   }
-  .big{
-    margin-top: -2.5%;
-    font-size:50px;
-    width: 150px;
-  }
-  button:hover{
-    background-color: rgba(47, 75, 168, 0.685);
-  }
-  #divForYellowNoteS{
-    margin-top: 15%;
-    margin-left: 10%;
-    display: flex;
-  }
-  .yellowNote{
-    background: url(notebg.png);
-    background-repeat: no-repeat;
-    background-size: 80%; 
-    height: 300px;
-    width: 100px;
-    margin: 25px;
-  }
-  .yellowNote:hover{
-    background-size: 100%; 
-  }
-  .YellowNoteText{
-    margin-top: 12%;
-    width: 85%;
-    height: 200px;
-    overflow: hidden;
-  }
-  .YellowNoteText:hover{
-    margin-top: 12%;
-    width: 90%;
-    overflow: auto;
-    }
-    #noteTime{
-    margin-top: 110%;
-  }
-  .divForButtons{
-      margin-top: -20px;
-    position: absolute;
-    opacity: 0;
-    height: 300px;
-    width: 200px;
-  }
-  .divForButtons:hover{
-    opacity: 1;
-    color: rgb(184, 1, 1);
-  }
-  .btn-note{
-    background-color: rgba(18, 90, 24, 0.548)
-  }
+  #noteTime{
+  margin-top: -10%;
+  color: rgb(184, 1, 1);
+}
+.divForButtons{
+  margin-top: -20px;
+  position: absolute;
+  opacity: 0;
+  height: 300px;
+  width: 200px;
+}
+.divForButtons:hover{
+  opacity: 1;
+  color: rgb(184, 1, 1);
+}
+.btn-note{
+  background-color: rgba(18, 90, 24, 0.548)
+}
+.name{
+  color: red;
+}
