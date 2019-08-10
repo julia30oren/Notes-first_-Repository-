@@ -1,6 +1,4 @@
 const notes_DOM = {
-    // clock: document.getElementById('clock'),
-    // nday: document.getElementById('day'),
 
     noteForm: document.getElementById('noteForm'),
     textarea: document.getElementById('exampleFormControlTextarea1'),
@@ -51,7 +49,7 @@ function findIndex(data, _id) {
 }
 
 function createNEWnote(note) {
-    const { name, textarea, id } = note;
+    const { name, textarea, id, t } = note;
     if (!textarea) return;
 
     const divForNote = document.createElement('div');
@@ -84,7 +82,9 @@ function createNEWnote(note) {
 
     const newNoteTime = document.createElement('p');
     newNoteTime.id = "noteTime";
-    newNoteTime.innerText = "Left Time : ";
+    // newNoteTime.innerText = "Left Time : ";
+    newNoteTime.innerHTML = "Left Time : " + t;
+
     
     divForButtons.append(checkButt,deleteButt)
     divForNote.append(divForButtons,noteText,newNoteTime);
@@ -143,41 +143,34 @@ function init() {
     arrayOfData = JSON.parse(localStorage.getItem("notesData")) || []
     draw(arrayOfData);
 }
-
 init();
 
 
 // function clockF() {
     
-//     var time = new Date();
-//     var h = (time.getHours()%12).toString();
-//     var m = time.getMinutes().toString();
-//     var s = time.getSeconds().toString();
+//     var now = new Date();
+//     var deadLine = new Date(2019,07,11,0,0,0);
 
-//     if ( h.length < 2){
-//         h = '0'+ h;
-//     }
-//     if ( m.length < 2){
-//         m = '0'+ m;
-//     }
-//     if ( s.length < 2){
-//         s = '0'+ s;
-//     }
-//     var correntTime = h + ':' + m + ':' + s;
-//     clock.textContent = correntTime;
+//     var correntTime = now.getTime();
+//     var deadLineTime = deadLine.getTime();
+//     var remTimeForTask = deadLineTime-correntTime;
 
-//     return correntTime;
+//     var s = Math.floor(remTimeForTask/1000);
+//     var m = Math.floor(s/60);
+//     var h = Math.floor(m/60);
+//     var d = Math.floor(h/60);
+//   h %= 24;
+//   m %= 60;
+//   s %= 60;
+//   h = (h<10) ? "0" + h : h;
+//   m = (m<10) ? "0" + m : m;
+//   s = (s<10) ? "0" + s : s;
 
+//   remTimeForTask = d + " days " + h + ":" + m + ":" + s;
+//   console.log(remTimeForTask)
 // }
 // clockF();
 // setInterval(clockF, 1000);
-// const t = clockF();
-// console.log(t);
 
 
-// var dateT = new Date();
-// var day = dateT.getDay().toString();
-// var mns = dateT.getMonth().toString();
-// var correntDay = day + ' ' + mns;
-// nday.textContent = correntDay;
 console.log(arrayOfData);
