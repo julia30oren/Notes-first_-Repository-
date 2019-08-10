@@ -42,7 +42,7 @@
       </form>
 
     <button  id="SaveButton" type="button" class="btn sm" onclick="saveNOTE()">Save</button>
-    <button  id="ResetButton" type="reset" class="btn sm" id="reset">Reset</button>
+    <button  id="ResetButton" type="reset" class="btn sm" >Reset</button>
   </div>
 </div>
 
@@ -50,17 +50,20 @@
   <p id="newTask">Sort notes by...</p>
   <form id="noteForm">
     <button type="button" class="btn big" onclick="init()" id="butAll">All</button>
-    <!-- <button type="button" class="btn big" onclick="" id="butNew">New</button> -->
+    <button type="button" class="btn big" onclick="getNewNotes()" id="butNew">New</button>
     <button type="button" class="btn big" onclick="getDoneNotes()" id="butDone">Done</button>
   </form>
 </div>
 </div>
+
   <div class="row" id="divForYellowNoteS" >
   
   </div>
 
     <script src="icons.js"></script>
     <script src="notePade.js"></script>
+    <script src="filter.js"></script>
+
 </body>
 </html>
 
